@@ -27,6 +27,14 @@ func (l *Lexer) readChar() {
 	l.readPosition++
 }
 
+func (l *Lexer) peekChar() byte {
+	if l.readPosition >= len(l.input) {
+		return 0
+	}
+
+	return l.input[l.readPosition]
+}
+
 func isLetter(ch byte) bool {
 	return 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z' || ch == '_'
 }
@@ -73,7 +81,15 @@ func (l *Lexer) NextToken() token.Token {
 
 	switch l.ch {
 	case '=':
-		tok = NewToken(token.ASSIGN, l.ch)
+		if l.peekChar() == '=' {
+			l.readChar()
+			tok = token.Token{
+				Type:    token.EQ,
+				Literal: "==",
+			}
+		} else {
+			tok = NewToken(token.ASSIGN, l.ch)
+		}
 	case ';':
 		tok = NewToken(token.SEMICOLON, l.ch)
 	case ')':
@@ -91,7 +107,15 @@ func (l *Lexer) NextToken() token.Token {
 	case '-':
 		tok = NewToken(token.MINUS, l.ch)
 	case '!':
-		tok = NewToken(token.BANG, l.ch)
+		if l.peekChar() == '=' {
+			l.readChar()
+			tok = token.Token{
+				Type:    token.NOT_EQ,
+				Literal: "!=",
+			}
+		} else {
+			tok = NewToken(token.BANG, l.ch)
+		}
 	case '*':
 		tok = NewToken(token.ASTERISK, l.ch)
 	case '/':
