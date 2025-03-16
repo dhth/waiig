@@ -107,12 +107,30 @@ if (5 < 10) {
 		{token.EOF, ""},
 	}
 
+	// GIVEN
 	l := New(input)
 
 	for _, tt := range tests {
+		// WHEN
 		tok := l.NextToken()
 
+		// THEN
 		assert.Equal(t, tt.expectedType, tok.Type)
 		assert.Equal(t, tt.expectedLiteral, tok.Literal)
 	}
+}
+
+func TestLexingEmptyInput(t *testing.T) {
+	// GIVEN
+	l := New("")
+
+	// WHEN
+	got := l.NextToken()
+
+	// THEN
+	expected := token.Token{
+		Type:    token.EOF,
+		Literal: "",
+	}
+	assert.Equal(t, expected, got)
 }
