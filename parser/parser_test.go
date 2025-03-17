@@ -23,7 +23,7 @@ let foobar = 838383;
 	program := p.ParseProgram()
 	checkParserErrors(t, p)
 	require.NotNil(t, program)
-	require.Equal(t, len(program.Statments), 3)
+	require.Equal(t, len(program.Statements), 3)
 
 	tests := []struct {
 		expectedIdentifier string
@@ -34,7 +34,7 @@ let foobar = 838383;
 	}
 
 	for i, tt := range tests {
-		stmt := program.Statments[i]
+		stmt := program.Statements[i]
 		testLetStatement(t, stmt, tt.expectedIdentifier)
 	}
 }
@@ -81,9 +81,9 @@ return 993322;
 	// THEN
 	checkParserErrors(t, p)
 
-	require.Equal(t, 3, len(program.Statments))
+	require.Equal(t, 3, len(program.Statements))
 
-	for _, stmt := range program.Statments {
+	for _, stmt := range program.Statements {
 		returnStmt, ok := stmt.(*ast.ReturnStatement)
 		assert.True(t, ok)
 		assert.Equal(t, "return", returnStmt.TokenLiteral())

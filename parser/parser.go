@@ -42,12 +42,12 @@ func (p *Parser) nextToken() {
 
 func (p *Parser) ParseProgram() *ast.Program {
 	program := ast.Program{}
-	program.Statments = []ast.Statement{}
+	program.Statements = []ast.Statement{}
 
 	for !p.curTokenIs(token.EOF) {
 		stmt := p.parseStatement()
 		if stmt != nil {
-			program.Statments = append(program.Statments, stmt)
+			program.Statements = append(program.Statements, stmt)
 		}
 
 		p.nextToken()
