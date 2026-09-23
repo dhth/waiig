@@ -1,11 +1,9 @@
 package main
 
 import (
-	"os"
-
-	"monkey/repl"
+	"fmt"
 )
 
 func main() {
-	repl.Start(os.Stdin, os.Stdout)
+	fmt.Println("hello")
 }
