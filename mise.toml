@@ -1,0 +1,42 @@
+[settings]
+task.run_auto_install = false
+
+[tools]
+go = "1.27.1"
+gofumpt = "latest"
+golangci-lint = "latest"
+
+[tasks.all]
+alias = "a"
+description = "Format, lint, and test"
+run = [
+	{ task = "fmt" },
+	{ task = "lint" },
+	{ task = "test" },
+	{ task = "build" },
+]
+
+[tasks.run]
+alias = "r"
+description = "Run the application"
+run = "go run ."
+
+[tasks.build]
+alias = "b"
+description = "Build the application"
+run = 'go build -ldflags "-w -s" .'
+
+[tasks.test]
+alias = "t"
+description = "Run all tests"
+run = "go test ./..."
+
+[tasks.fmt]
+alias = "f"
+description = "Format Go source files"
+run = "gofumpt -l -w ."
+
+[tasks.lint]
+alias = ["l", "check", "c"]
+description = "Lint the codebase"
+run = "golangci-lint run"
