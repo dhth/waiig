@@ -38,9 +38,11 @@ jobs:
         uses: jdx/mise-action@v4
         with:
           install_args: go golangci-lint gofumpt
-      - name: Build
-        run: mise run build
+      - name: Check formatting
+        run: mise run format:check
       - name: Lint
         run: mise run lint
       - name: Test
         run: mise run test
+      - name: Build
+        run: mise run build

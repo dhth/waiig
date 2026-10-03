@@ -8,7 +8,7 @@ golangci-lint = "latest"
 
 [tasks.all]
 alias = "a"
-description = "Format, lint, build and test"
+description = "Format, then lint, test and build"
 run = [
 	{ task = "fmt" },
     { tasks = ["lint", "test", "build"] },
@@ -33,6 +33,11 @@ run = "go test ./..."
 alias = "f"
 description = "Format Go source files"
 run = "gofumpt -l -w ."
+
+[tasks."fmt:check"]
+alias = "fc"
+description = "Check Go source formatting"
+run = "gofumpt -l ."
 
 [tasks.lint]
 alias = ["l", "check", "c"]
