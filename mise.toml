@@ -8,12 +8,10 @@ golangci-lint = "latest"
 
 [tasks.all]
 alias = "a"
-description = "Format, lint, and test"
+description = "Format, lint, build and test"
 run = [
 	{ task = "fmt" },
-	{ task = "lint" },
-	{ task = "test" },
-	{ task = "build" },
+    { tasks = ["lint", "test", "build"] },
 ]
 
 [tasks.run]
