@@ -39,7 +39,7 @@ jobs:
         with:
           install_args: go golangci-lint gofumpt
       - name: Check formatting
-        run: mise run format:check
+        run: mise run fmt:check
       - name: Lint
         run: mise run lint
       - name: Test
