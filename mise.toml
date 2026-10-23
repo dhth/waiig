@@ -2,9 +2,9 @@
 task.run_auto_install = false
 
 [tools]
-go = "1.27.1"
+go = "1.27.3"
 gofumpt = "latest"
-golangci-lint = "latest"
+golangci-lint = "2.15.0"
 
 [tasks.all]
 alias = "a"
