@@ -2,7 +2,7 @@
 task.run_auto_install = false
 
 [tools]
-go = "1.27.1"
+go = "1.27.3"
 gofumpt = "latest"
 golangci-lint = "latest"
 
